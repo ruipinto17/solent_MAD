@@ -14,7 +14,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="@string/convertBtn" />
+                android:text="@string/convertBtn"/>
 
             <TextView
                 android:id="@+id/lblFeet"
@@ -25,21 +25,19 @@
                 android:textSize="12pt"/>
 
             <EditText
-                android:id="@+id/et1"
+                android:id="@+id/txtInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/btnConvert"
                 android:layout_toRightOf="@id/lblFeet"
-                android:inputType="numberDecimal"
-                />
+                android:inputType="numberDecimal"/>
 
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/lblResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            />
+            android:text="" />
 
 </LinearLayout>

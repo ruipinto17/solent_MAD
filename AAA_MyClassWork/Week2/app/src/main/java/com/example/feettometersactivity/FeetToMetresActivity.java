@@ -16,20 +16,21 @@ public class FeetToMetresActivity extends AppCompatActivity implements OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Button b = findViewById(R.id.btnConvert);
         b.setOnClickListener(this);
     }
 
     public void onClick(View view)
     {
-        TextView tv = findViewById(R.id.tv1);
-        EditText et = findViewById(R.id.et1);
+        TextView tv = findViewById(R.id.lblResult);
+        EditText et = findViewById(R.id.txtInput);
         //Double feet = 0.0;
         try
         {
            double feet = Double.parseDouble(et.getText().toString());
            double metres = feet * 0.305;
-           tv.setText("In meters that is: " + metres);
+           tv.setText(feet +" feet = " + metres + " metres" );
         }
         catch (NumberFormatException ex)
         {

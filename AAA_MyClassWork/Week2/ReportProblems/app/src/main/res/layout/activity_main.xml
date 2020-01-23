@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/panel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        >
+
+        <!--weight tag defines the amount of space an object takes,
+        in this case a button, with this being said assigning both buttons
+        with the same weight gives them the same size-->
+
+        <!--layout_width is a mandatory attribute so in order to avoid computations
+        we set it to 0px instead of the normal values: match_parent, wrap_content
+        (quick and simple optimisation)-->
+
+        <Button
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/btnOK"
+            android:text="OK"
+            android:layout_alignParentLeft="true"
+            />
+
+        <Button
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/btnClear"
+            android:text="Clear"
+            android:layout_alignParentLeft="true"/>
+
+    </LinearLayout>
+
+    <EditText
+        android:gravity="fill_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtProblem"
+        android:layout_above="@id/panel1"
+        android:inputType="textMultiLine"
+        android:textSize="10pt"
+        android:hint="@string/initialMessage"
+        />
+
+</RelativeLayout>
+
+</LinearLayout>

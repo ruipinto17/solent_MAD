@@ -5,15 +5,63 @@
     android:layout_height="match_parent"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+    <TextView
+        android:id="@+id/lblLat"
+        android:text="Latitude:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2pt"
+        android:textSize="12pt"/>
+
+    <EditText
+        android:id="@+id/txtLat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20pt"
+        android:layout_toRightOf="@id/lblLat"/>
+
+        <TextView
+            android:id="@+id/lblLon"
+            android:text="Longitude:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20pt"
+            android:textSize="12pt"/>
+
+        <EditText
+            android:id="@+id/txtLon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20pt"
+            android:layout_marginTop="20pt"
+            android:layout_toEndOf="@id/lblLat"
+            />
+
+        <Button
+            android:id="@+id/btnGo"
+            android:text="Go"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45pt"
+            />
+
     <org.osmdroid.views.MapView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50pt"
+        android:layout_marginTop="80pt"
         android:enabled="true"
         android:clickable="true"
         android:id="@+id/map1"
         tilesource="Mapnik"
         />
+
+    </RelativeLayout>
 
     <!--changing the map from fullscreen android:layout_marginTop="250px"-->
 </LinearLayout>

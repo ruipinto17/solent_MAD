@@ -1,5 +1,6 @@
 package com.example.mappingui;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,10 +19,10 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
+import org.w3c.dom.Text;
 
 
-
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity implements OnClickListener
 {
     MapView mv;
 
@@ -39,18 +41,30 @@ public class MainActivity extends AppCompatActivity
 
         mv.setMultiTouchControls(true);
         mv.getController().setZoom(16.0);
-        mv.getController().setCenter(new GeoPoint(51.05, -0.72));
+        mv.getController().setCenter(new GeoPoint(50.9000852, -1.4042018,17));
 
-        Button b = (Button)findViewById(R.id.btn1);
+        Button b = findViewById(R.id.btnGo);
         b.setOnClickListener(this);
     }
 
     public void onClick(View view)
     {
-        EditText txtLat = findViewById(R.id.tv1);
-        EditText txtLon = findViewById(R.id.tv2);
+        TextView tvLat = findViewById(R.id.lblLat);
+        TextView tvLon = findViewById(R.id.lblLon);
 
-        mv.getController().setCenter(new GeoPoint(txtLat.getText(),txtLon.getText());
+        EditText etLat = findViewById(R.id.txtLat);
+        EditText etLon = findViewById(R.id.txtLon);
 
+        try
+        {
+            Double lat = Double.parseDouble(etLat.getText().toString());
+            Double lon = Double.parseDouble(etLon.getText().toString());
+
+            mv.getController().setCenter(new GeoPoint(lat,lon));
+        }
+        catch (NumberFormatException ex)
+        {
+            new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage("Invalid input").show();
+        }
     }
 }

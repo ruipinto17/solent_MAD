@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener
         catch (NumberFormatException ex)
         {
             new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage("Invalid input").show();
+            etLat.getText().clear();
+            etLon.getText().clear();
+            etLat.requestFocus();
         }
     }
 }

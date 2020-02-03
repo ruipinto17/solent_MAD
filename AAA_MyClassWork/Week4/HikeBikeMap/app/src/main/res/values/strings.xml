@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mapping</string>
     <string name="choosemap">Choose Map</string>
+    <string name="setlocation">Set location</string>
     <string name="regularview">Regular View</string>
     <string name="hikebikemapview">Hike Bike Map View</string>
     <string name="selectmap">Select Map</string>

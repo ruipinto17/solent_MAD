@@ -1,5 +1,6 @@
 package com.example.mapping;
 
+import android.service.quicksettings.TileService;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
@@ -16,15 +17,12 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 
 
-
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     MapView mv;
 
     //called when the activity is first created
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //this line sets the user agent, a requirement to download OSM maps
@@ -41,26 +39,60 @@ public class MainActivity extends AppCompatActivity
 
 
     //this method makes the menu appear
-    public boolean onCreateOptionsMenu (Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
         return true;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if(item.getItemId() == R.id.choosemap)
-        {
-            //reaction of the user choosing the map
-            //new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage("Map has been chosen").show();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //reaction of the user choosing the map
+        if (item.getItemId() == R.id.choosemap) {
 
             //creating a second intent
             Intent intent = new Intent(this, MapChooseActivity.class);
-            startActivity(intent);
+            /*this line launches the second activity and expects a result to be sent back,
+            the 0 is an ID that we use to determine which child activity produced the results,
+            a parent activity could launch several child activities, so when we get a result,
+            we need to identify which child activity produced the result).*/
+            startActivityForResult(intent, 0);
 
             return true;
         }
+
+        if (item.getItemId() == R.id.setlocation)
+        {
+            //Intent intent = new Intent(this, SetLocation.class);
+
+            //startActivityForResult(intent, 1);
+
+            mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+        }
+
         return false;
     }
+
+    /*take 3 parameters, including the requestCode (the ID of 0 that we used to identify our activity launch),
+    the resultCode (the code that the second Activity send back - RESULT_OK in this case) and
+    the Intent used to send the result back to the first activity.
+     */
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        //checks if the results was sent back from a request with an ID of 0
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+
+            //we retrieve the button ID sent back from the second activity within the Bundle
+            Bundle extras = intent.getExtras();
+            //depending on what was sent back from the second activity
+            boolean hikebikemap = extras.getBoolean("com.example.hikebikemap");
+            //we turn the hikebikemap on
+            if (hikebikemap == true) {
+                mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+            }
+            //or off
+            else{
+                mv.setTileSource(TileSourceFactory.MAPNIK);
+            }
+        }
+    }
 }
+

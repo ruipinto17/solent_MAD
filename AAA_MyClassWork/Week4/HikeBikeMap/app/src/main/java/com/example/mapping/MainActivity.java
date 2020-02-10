@@ -18,6 +18,11 @@ import org.osmdroid.views.MapView;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private Double latitude = 51.05;
+    private Double longitude = -0.72;
+    private Integer zoom = 16;
+
     MapView mv;
 
     //called when the activity is first created
@@ -59,14 +64,21 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         }
-
-        if (item.getItemId() == R.id.setlocation)
+        else if (item.getItemId() == R.id.setlocation)
         {
-            //Intent intent = new Intent(this, SetLocation.class);
+            //creating the set location intent
+            /*Intent requestIntent = new Intent(this, SetLocation.class);
 
-            //startActivityForResult(intent, 1);
+            Bundle bundle = new Bundle();
+            bundle.putDouble("com.example.setlocation.latitude", latitude);
+            bundle.putDouble("com.example.setlocation.longitude", longitude);
+            bundle.putDouble("com.example.setlocation.zoom", zoom);
+            requestIntent.putExtras(bundle);
 
-            mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
+            startActivityForResult(requestIntent, 1);
+
+            //mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);*/
+
         }
 
         return false;
@@ -89,9 +101,17 @@ public class MainActivity extends AppCompatActivity {
                 mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
             }
             //or off
-            else{
+            else {
                 mv.setTileSource(TileSourceFactory.MAPNIK);
             }
+        }
+        else if(requestCode == 1 && resultCode == RESULT_OK)
+        {
+            Bundle extras = intent.getExtras();
+            //latitude = extras.getDouble("com.example.setlocation.latitude");
+            //longitude = extras.getDouble("com.example.setlocation.longitude");
+            //zoom = extras.getInt("com.example.setlocation.zoom");
+
         }
     }
 }

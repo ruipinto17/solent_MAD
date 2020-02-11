@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+    key - uniquely identifies a preference, its used to access this particular preference in code
+    defaultValue - sets the default value
+    title - labels the preference on the preference screen
+    summary - longer text which appears under the title.
+    -->
+<EditTextPreference android:key="lat" android:defaultValue="50.9" android:title="Latitude" android:summary="Latitude to show the map at initially." />
+<EditTextPreference android:key="lon" android:defaultValue="-1.4" android:title="Longitude" android:summary="Longitude to she the map at initially."/>
+
+    <!--defaultValue = true because it's a boolean value (the box it's either checked or not)-->
+    <CheckBoxPreference android:key="autodownload" android:defaultValue="true" android:title="Auto-download"
+        android:summary="Auto-download data surrounding cinemas?"/>
+
+    <!--android:entries links to the array containing the entries that will appear on the screen (@array/pizzaFlavours) and
+    android:entryValues links to the actual values that will be carried through to the java code (@array/pizzaFlavouCodes)-->
+    <ListPreference android:key="pizza" android:title="Pizza Flavour" android:summary="Choose your pizza flavour."
+        android:entries="@array/pizzaFlavours" android:entryValues="@array/pizzaFlavourCodes" />
+
+
+</PreferenceScreen>

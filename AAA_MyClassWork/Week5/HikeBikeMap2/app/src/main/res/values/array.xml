@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--this array defines the text that will appear on the screen in the ListPreference-->
+    <string-array name="pizzaFlavours">
+        <item>Cheese, Tomato and Mushroom</item>
+        <item>Ham and Pineapple</item>
+        <item>Hot and Spicy</item>
+        <item>Seafood</item>
+    </string-array>
+
+    <!--this array defines the values that will be passed through the application, values that the java code will see.
+    These are two or three letter codes as they are easier to process in our app than text descriptions, which are prone to typos in code
+    (missin spaces, punctuation, etc)-->
+    <string-array name="pizzaFlavourCodes">
+        <item>CTM</item>
+        <item>HP</item>
+        <item>HS</item>
+        <item>SF</item>
+    </string-array>
+</resources>

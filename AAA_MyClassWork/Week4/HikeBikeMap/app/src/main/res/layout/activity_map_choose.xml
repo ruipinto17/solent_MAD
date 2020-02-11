@@ -4,14 +4,14 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btnRegular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/regularview" />
+        android:text="@string/regularview"
+        android:id="@+id/btnRegular"/>
 
     <Button
-        android:id="@+id/btnHikeBikeMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hikebikemapview" />
+        android:text="@string/hikebikemapview"
+        android:id="@+id/btnHikeBikeMap" />
 </LinearLayout>

@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+
         <TextView
             android:id="@+id/lblLat"
             android:text="Latitude:"
@@ -52,4 +53,5 @@
 
     </RelativeLayout>
 
+    <!--changing the map from fullscreen android:layout_marginTop="250px"-->
 </LinearLayout>

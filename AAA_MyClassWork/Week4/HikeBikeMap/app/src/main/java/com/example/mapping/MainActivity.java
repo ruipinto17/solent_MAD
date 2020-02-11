@@ -35,11 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        mv = findViewById(R.id.map1);
+        centerMap();
 
+
+    }
+
+    private void centerMap()
+    {
+        mv = findViewById(R.id.map1);
         mv.setMultiTouchControls(true);
         mv.getController().setZoom(16.0);
-        mv.getController().setCenter(new GeoPoint(51.05, -0.72));
+        mv.getController().setCenter(new GeoPoint(latitude, longitude));
     }
 
 
@@ -52,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         //reaction of the user choosing the map
-        if (item.getItemId() == R.id.choosemap) {
-
+        if (item.getItemId() == R.id.choosemap)
+        {
             //creating a second intent
             Intent intent = new Intent(this, MapChooseActivity.class);
             /*this line launches the second activity and expects a result to be sent back,
@@ -61,26 +67,21 @@ public class MainActivity extends AppCompatActivity {
             a parent activity could launch several child activities, so when we get a result,
             we need to identify which child activity produced the result).*/
             startActivityForResult(intent, 0);
-
             return true;
         }
-        else if (item.getItemId() == R.id.setlocation)
+        else if(item.getItemId() == R.id.setlocation)
         {
-            //creating the set location intent
-            /*Intent requestIntent = new Intent(this, SetLocation.class);
-
+            Intent requestIntent = new Intent(this, SetLocation.class);
             Bundle bundle = new Bundle();
-            bundle.putDouble("com.example.setlocation.latitude", latitude);
-            bundle.putDouble("com.example.setlocation.longitude", longitude);
-            bundle.putDouble("com.example.setlocation.zoom", zoom);
+
+            bundle.putDouble("com.example.latitude", latitude);
+            bundle.putDouble("com.example.longitude", longitude);
+            bundle.putInt("com.example.zoom", zoom);
             requestIntent.putExtras(bundle);
 
             startActivityForResult(requestIntent, 1);
-
-            //mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);*/
-
+            return true;
         }
-
         return false;
     }
 
@@ -90,28 +91,31 @@ public class MainActivity extends AppCompatActivity {
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         //checks if the results was sent back from a request with an ID of 0
-        if (requestCode == 0 && resultCode == RESULT_OK) {
-
+        if (requestCode == 0 && resultCode == RESULT_OK)
+        {
             //we retrieve the button ID sent back from the second activity within the Bundle
             Bundle extras = intent.getExtras();
             //depending on what was sent back from the second activity
             boolean hikebikemap = extras.getBoolean("com.example.hikebikemap");
             //we turn the hikebikemap on
-            if (hikebikemap == true) {
+            if (hikebikemap == true)
+            {
                 mv.setTileSource(TileSourceFactory.HIKEBIKEMAP);
             }
             //or off
-            else {
+            else
+            {
                 mv.setTileSource(TileSourceFactory.MAPNIK);
             }
         }
         else if(requestCode == 1 && resultCode == RESULT_OK)
         {
             Bundle extras = intent.getExtras();
-            //latitude = extras.getDouble("com.example.setlocation.latitude");
-            //longitude = extras.getDouble("com.example.setlocation.longitude");
-            //zoom = extras.getInt("com.example.setlocation.zoom");
+            latitude = extras.getDouble("com.example.latitude");
+            longitude = extras.getDouble("com.example.longitude");
+            zoom = extras.getInt("com.example.zoom");
 
+            centerMap();
         }
     }
 }

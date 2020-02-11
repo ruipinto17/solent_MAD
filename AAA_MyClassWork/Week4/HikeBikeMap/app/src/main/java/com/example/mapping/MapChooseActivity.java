@@ -8,8 +8,7 @@ import android.widget.Button;
 import android.view.View.OnClickListener;
 
 
-public class MapChooseActivity extends AppCompatActivity implements OnClickListener
-{
+public class MapChooseActivity extends AppCompatActivity implements OnClickListener {
     public void onCreate (Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);

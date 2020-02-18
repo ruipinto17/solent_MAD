@@ -1,4 +1,4 @@
-package com.example.mapping;
+package com.example.hikebikemap;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

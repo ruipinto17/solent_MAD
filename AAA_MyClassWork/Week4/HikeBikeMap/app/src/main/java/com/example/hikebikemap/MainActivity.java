@@ -1,7 +1,5 @@
-package com.example.mapping;
+package com.example.hikebikemap;
 
-import android.service.quicksettings.TileService;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;

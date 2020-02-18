@@ -1,4 +1,4 @@
-package com.example.mapping;
+package com.example.hikebikemap;
 
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class SetLocation extends AppCompatActivity implements OnClickListener
 {

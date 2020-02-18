@@ -1,4 +1,4 @@
-package com.example.mapping;
+package com.example.hikebikemap;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.example.mapping;
+package com.example.hikebikemap;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

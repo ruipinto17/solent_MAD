@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:key="lat"
+        android:defaultValue="50.9"
+        android:title="Latitude"
+        android:summary="Latitude to show the map at initially."
+        />
+    <EditTextPreference
+        android:key="lon"
+        android:defaultValue="-1.4"
+        android:title="Longitude"
+        android:summary="Longitude to show the map at initially."
+        />
+    <EditTextPreference
+        android:key="zoom"
+        android:defaultValue="11"
+        android:title="Zoom"
+        android:summary="Default zoom to show the map at initially."
+        />
+</PreferenceScreen>
+
+<!--Key - Uniquely identifies a preference. We use this to access this particular preference in the code-->
+<!--defaultValue - Default value of the preference-->
+<!--title - Labels the preference on the preference screen-->
+<!--Summary - Longer text that appears under the title, to explain in more detail what the preference is for-->
+
+

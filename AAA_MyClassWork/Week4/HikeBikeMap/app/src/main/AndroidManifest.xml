@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mapping">
+    package="com.example.hikebikemap">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -13,20 +13,20 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Hike Bike Map"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.hikebikemap.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapChooseActivity" android:label="@string/choosemap">
+        <activity android:name="com.example.hikebikemap.MapChooseActivity" android:label="Choose map please">
         </activity>
-        <activity android:name=".SetLocation" android:label="Set Location">
+        <activity android:name="com.example.hikebikemap.SetLocation" android:label="Set Location">
         </activity>
     </application>
 

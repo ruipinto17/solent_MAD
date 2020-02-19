@@ -28,6 +28,8 @@
         </activity>
         <activity android:name="com.example.hikebikemap.SetLocation" android:label="Set Location">
         </activity>
+        <activity android:name="com.example.hikebikemap.MyPrefsActivity" android:label="Set Defaults">
+        </activity>
     </application>
 
 </manifest>

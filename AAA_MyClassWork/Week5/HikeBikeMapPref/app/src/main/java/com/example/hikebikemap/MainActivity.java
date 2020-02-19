@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 import org.osmdroid.config.Configuration;
@@ -29,6 +30,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //load last used mapcode if available
+        if(savedInstanceState != null)
+        {
+            mapCode = savedInstanceState.getString("com.example.mapcode");
+        }
+
+        //load map code if no last used mapcode
+        if(mapCode == null)
+        {
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            mapCode = prefs.getString("mapPref", "normal");
+        }
+
         //this line sets the user agent, a requirement to download OSM maps
         Configuration.getInstance().load(this, PreferenceManager.getDefaultSharedPreferences(this));
 
@@ -37,12 +51,26 @@ public class MainActivity extends AppCompatActivity {
         centerMap();
     }
 
+    public void onStart()
+    {
+        super.onStart();
+        centerMap();
+    }
+
     public void onResume()
     {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        double lat = Double.parseDouble(prefs.getString("lat", "50.9"));
-        double lon = Double.parseDouble(prefs.getString("lon", "-1.4"));
+        try
+        {
+            double lat = Double.parseDouble(prefs.getString("lat", "50.9"));
+            double lon = Double.parseDouble(prefs.getString("lon", "-1.4"));
+        }
+        catch(Exception ex)
+        {
+            Toast.makeText(getApplicationContext(), "ERRO" + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
         boolean autodownload = prefs.getBoolean("autodownload", true);
         String mapCode = prefs.getString("map", "NONE");
     }
@@ -50,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
     public void onDestroy()
     {
         super.onDestroy();
+        //save the chosen map
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("com.example.mapcode", mapCode);
@@ -145,6 +174,29 @@ public class MainActivity extends AppCompatActivity {
         }
         else if (requestCode == 2)
         {
+            //result from set preferences activity
+            //test results and relaunch if incorrect
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            Double lat;
+            Double lon;
+            Integer zom;
+
+            try
+            {
+                lat = Double.parseDouble(prefs.getString("lat", "51.05"));
+                lon = Double.parseDouble(prefs.getString("lon", "-0.72"));
+                zom = Integer.parseInt(prefs.getString("zoom", "16"));
+
+                latitude = lat;
+                longitude = lon;
+                zoom = zom;
+            }
+            catch (Exception ex)
+            {
+                Intent requestIntent = new Intent(this, MyPrefsActivity.class);
+                startActivityForResult(requestIntent, 2);
+                Toast.makeText(getApplicationContext(), "Invalid default preference" + ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
         }
     }

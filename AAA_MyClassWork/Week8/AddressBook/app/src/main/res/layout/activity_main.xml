@@ -1,0 +1,28 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+ <RelativeLayout android:orientation="horizontal" android:layout_width="match_parent"
+ android:layout_height="wrap_content">
+
+     <TextView
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:id="@+id/tvFirstName"
+     android:text="Text:"/>
+
+     <EditText
+         android:layout_marginTop="15pt"
+         android:id="@+id/etText"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:gravity="top"/>
+ </RelativeLayout>
+
+
+
+</LinearLayout>
+

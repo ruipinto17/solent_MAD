@@ -13,7 +13,7 @@
         />
     <EditTextPreference
         android:key="zoom"
-        android:defaultValue="11"
+        android:defaultValue="16"
         android:title="Zoom"
         android:summary="Default zoom to show the map at initially."
         />

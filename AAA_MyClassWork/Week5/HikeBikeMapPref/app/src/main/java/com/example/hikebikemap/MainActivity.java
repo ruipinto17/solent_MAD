@@ -57,24 +57,6 @@ public class MainActivity extends AppCompatActivity {
         centerMap();
     }
 
-    public void onResume()
-    {
-        super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        try
-        {
-            double lat = Double.parseDouble(prefs.getString("lat", "50.9"));
-            double lon = Double.parseDouble(prefs.getString("lon", "-1.4"));
-        }
-        catch(Exception ex)
-        {
-            Toast.makeText(getApplicationContext(), "ERRO" + ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-        boolean autodownload = prefs.getBoolean("autodownload", true);
-        String mapCode = prefs.getString("map", "NONE");
-    }
-
     public void onDestroy()
     {
         super.onDestroy();
@@ -83,6 +65,24 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("com.example.mapcode", mapCode);
         editor.commit();
+    }
+
+    public void onResume()
+    {
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        try
+        {
+            double lat = Double.parseDouble(prefs.getString("lat", "42.2"));
+            double lon = Double.parseDouble(prefs.getString("lon", "-42.2"));
+        }
+        catch(Exception ex)
+        {
+            Toast.makeText(getApplicationContext(), "An error has occurred: " + ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+        boolean autodownload = prefs.getBoolean("autodownload", true);
+        String mapCode = prefs.getString("map", "normal");
     }
 
     public void onSaveInstanceState (Bundle savedInstanceState) {
@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
             {
                 Intent requestIntent = new Intent(this, MyPrefsActivity.class);
                 startActivityForResult(requestIntent, 2);
-                Toast.makeText(getApplicationContext(), "Invalid default preference" + ex.getMessage(), Toast.LENGTH_LONG).show();
             }
 
         }

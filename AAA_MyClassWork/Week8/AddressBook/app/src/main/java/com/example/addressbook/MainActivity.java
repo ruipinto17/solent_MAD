@@ -39,19 +39,28 @@ public class MainActivity extends AppCompatActivity {
         String text = mEditText.getText().toString();
         FileOutputStream fos = null;
 
-        try {
+        try
+        {
             fos = openFileOutput("example.txt", MODE_PRIVATE);
             fos.write(text.getBytes());
 
             mEditText.getText().clear();
             Toast.makeText(this, "Saved to " + getFilesDir() + "/" + "example.txt", Toast.LENGTH_LONG).show();
-        } catch (IOException e) {
-            System.out.println(e);
-        } finally {
-            if (fos != null) {
-                try {
+        }
+        catch (IOException e)
+        {
+            new AlertDialog.Builder(this).setPositiveButton("OK", null).setMessage("ERROR: " + e).show();
+        }
+        finally
+        {
+            if (fos != null)
+            {
+                try
+                {
                     fos.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -62,7 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
         FileInputStream fis = null;
 
-        try {
+        try
+        {
             fis = openFileInput("example.txt");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
@@ -74,13 +84,21 @@ public class MainActivity extends AppCompatActivity {
                 sb.append(text).append("\n");
             }
             mEditText.setText(sb.toString());
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
-        } finally {
-            if (fis != null) {
-                try {
+        }
+        finally
+        {
+            if (fis != null)
+            {
+                try
+                {
                     fis.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e)
+                {
                     e.printStackTrace();
                 }
             }

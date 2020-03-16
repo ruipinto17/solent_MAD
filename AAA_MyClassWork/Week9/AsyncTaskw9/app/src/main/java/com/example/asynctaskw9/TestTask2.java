@@ -6,36 +6,29 @@ import android.os.AsyncTask;
 
 import java.io.IOException;
 
-public class TestTask2 extends AsyncTask<String,Void,String>
-{
+public class TestTask2 extends AsyncTask<String, Void, String> {
     Context parent;
 
-    public TestTask2(Context p)
-    {
+    public TestTask2(Context p) {
         //doInBackground("http...");
         parent = p;
     }
 
+    protected String doInBackground(String... urls) {
+        String message = "Successfully downloaded!";
 
-    @Override
-    protected String doInBackground(String... urls)
-    {
-       String message =  "Successfully downloaded!";
+        try {
+            String urlToDownloadFrom = urls[0];
+            //download from that URL...
 
-       try
-       {
-           String urlToDownloadFrom = urls[0];
-           //download from that URL...
-       }
-       catch(IOException e)
-       {
-           message = e.toString();
-       }
-       return null;
+            throw new IOException("test");
+        } catch (IOException e) {
+            message = e.toString();
+        }
+        return null;
     }
 
-    public void onPostExecute(String message)
-    {
+    public void onPostExecute(String message) {
         new AlertDialog.Builder(parent).setMessage(message).setPositiveButton("OK", null).show();
     }
 }

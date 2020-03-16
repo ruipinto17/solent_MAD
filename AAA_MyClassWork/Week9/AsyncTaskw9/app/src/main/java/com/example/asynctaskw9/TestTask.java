@@ -31,7 +31,7 @@ public class TestTask extends AsyncTask<Void,Void,String>
         String message = "Successfully downloaded!";
         try
         {
-            //network communication would go here;
+            throw new IOException("test"); //Network communication would go here
         }
         catch(IOException e)
         {
